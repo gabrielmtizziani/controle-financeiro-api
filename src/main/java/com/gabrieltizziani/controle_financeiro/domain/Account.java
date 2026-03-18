@@ -59,4 +59,8 @@ public class Account {
             this.statusAccount = updateAccountRequest.statusAccount();
         }
     }
+
+    public void inactivateAccount(){
+        this.statusAccount = StatusAccount.INATIVA;
+    }
 }

@@ -47,4 +47,13 @@ public class AccountController {
         var accountUpdate = accountService.updateAccount(id, updateAccountRequest, user.getId());
         return ResponseEntity.ok(new AccountResponse(accountUpdate));
     }
+
+    @PatchMapping
+    public ResponseEntity<Void> inactivateAccount(
+            @PathVariable Long id, Authentication authentication
+    ){
+        var user = (User) authentication.getPrincipal();
+        accountService.inactivateAccount(id, user.getId());
+        return ResponseEntity.noContent().build();
+    }
 }

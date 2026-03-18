@@ -2,6 +2,7 @@ package com.gabrieltizziani.controle_financeiro.service;
 
 import com.gabrieltizziani.controle_financeiro.domain.Account;
 import com.gabrieltizziani.controle_financeiro.domain.User;
+import com.gabrieltizziani.controle_financeiro.domain.enums.StatusAccount;
 import com.gabrieltizziani.controle_financeiro.dto.account.AccountResponse;
 import com.gabrieltizziani.controle_financeiro.dto.account.CreateAccountRequest;
 import com.gabrieltizziani.controle_financeiro.dto.account.UpdateAccountRequest;
@@ -51,5 +52,18 @@ public class AccountService {
 
         account.updateAccount(updateAccountRequest);
         return accountRepository.save(account);
+    }
+
+    @Transactional
+    public void inactivateAccount(Long id, Long userId) {
+        var account = accountRepository.findByIdAndUserId(id, userId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        if (account.getStatusAccount()== StatusAccount.INATIVA){
+            throw new RuntimeException("Account inactivated");
+        }
+
+        account.inactivateAccount();
+        accountRepository.save(account);
     }
 }
