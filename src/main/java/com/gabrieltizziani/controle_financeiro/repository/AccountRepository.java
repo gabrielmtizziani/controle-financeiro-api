@@ -8,12 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account,Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findAllByUserId(Long userId);
-
     Optional<Account> findByIdAndUserId(Long id, Long userId);
 
-    boolean existsByNameAccountAndUserId(String nameAccount, Long userId);
-
-    boolean existsByNameAccountAndUserIdAndIdNot(String nameAccount, Long userId, Long id);
+    boolean existsByUserIdAndNameAccount(Long userId, String nameAccount);
+    boolean existsByUserIdAndNameAccountAndIdNot(Long userId, String nameAccount, Long id);
 }

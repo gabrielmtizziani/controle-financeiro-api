@@ -21,7 +21,9 @@ public class AccountService {
 
     @Transactional
     public Account createAccount(CreateAccountRequest createAccountRequest, User user) {
-        if (accountRepository.existsByNameAccountAndUserId(createAccountRequest.nameAccount(), user.getId())) {
+        String accountName = createAccountRequest.nameAccount().trim();
+
+        if (accountRepository.existsByUserIdAndNameAccount(user.getId(), accountName)) {
             throw new RuntimeException("You already have an account with this name");
         }
 
@@ -41,13 +43,13 @@ public class AccountService {
         var account = accountRepository.findByIdAndUserId(id, userId)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
-        if (updateAccountRequest.nameAccount() != null &&
-                accountRepository.existsByNameAccountAndUserIdAndIdNot(
-                        updateAccountRequest.nameAccount(),
-                        userId,
-                        id
-                )) {
-            throw new RuntimeException("You already have an account with this name");
+        if (updateAccountRequest.nameAccount() != null) {
+            String accountName = updateAccountRequest.nameAccount().trim();
+
+            if (accountRepository.existsByUserIdAndNameAccountAndIdNot(userId, accountName, id)) {
+                throw new RuntimeException("You already have an account with this name");
+            }
+
         }
 
         account.updateAccount(updateAccountRequest);

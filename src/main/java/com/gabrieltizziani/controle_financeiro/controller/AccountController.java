@@ -48,7 +48,7 @@ public class AccountController {
         return ResponseEntity.ok(new AccountResponse(accountUpdate));
     }
 
-    @PatchMapping
+    @PatchMapping("/{id}/inactivate")
     public ResponseEntity<Void> inactivateAccount(
             @PathVariable Long id, Authentication authentication
     ){
