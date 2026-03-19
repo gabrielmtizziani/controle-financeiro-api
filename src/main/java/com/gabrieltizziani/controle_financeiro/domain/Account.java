@@ -55,12 +55,13 @@ public class Account {
         if (updateAccountRequest.currentBalance() != null){
             this.currentBalance = updateAccountRequest.currentBalance();
         }
-        if (updateAccountRequest.statusAccount() != null){
-            this.statusAccount = updateAccountRequest.statusAccount();
-        }
     }
 
     public void inactivateAccount(){
         this.statusAccount = StatusAccount.INATIVA;
+    }
+
+    public void activateAccount(){
+        this.statusAccount = StatusAccount.ATIVA;
     }
 }
