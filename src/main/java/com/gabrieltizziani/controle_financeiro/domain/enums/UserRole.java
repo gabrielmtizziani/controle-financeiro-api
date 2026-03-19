@@ -1,4 +1,4 @@
-package com.gabrieltizziani.controle_financeiro.domain;
+package com.gabrieltizziani.controle_financeiro.domain.enums;
 
 public enum UserRole {
     ADMIN("admin"),

@@ -1,5 +1,6 @@
 package com.gabrieltizziani.controle_financeiro.domain;
 
+import com.gabrieltizziani.controle_financeiro.domain.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
