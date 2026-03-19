@@ -32,6 +32,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/accounts").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/accounts").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "/accounts/{id}/inactivate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/categories").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/categories").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
