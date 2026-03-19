@@ -68,4 +68,17 @@ public class AccountService {
         account.inactivateAccount();
         accountRepository.save(account);
     }
+
+    @Transactional
+    public void activateAccount(Long id, Long userId) {
+        var account = accountRepository.findByIdAndUserId(id, userId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        if (account.getStatusAccount()== StatusAccount.ATIVA){
+            throw new RuntimeException("Account activated");
+        }
+
+        account.activateAccount();
+        accountRepository.save(account);
+    }
+
 }

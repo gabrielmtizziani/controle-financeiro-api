@@ -56,4 +56,14 @@ public class AccountController {
         accountService.inactivateAccount(id, user.getId());
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/activate")
+    public ResponseEntity<Void> activateAccount(
+            @PathVariable Long id, Authentication authentication
+    ){
+        var user = (User) authentication.getPrincipal();
+        accountService.activateAccount(id, user.getId());
+        return ResponseEntity.noContent().build();
+    }
+
 }
