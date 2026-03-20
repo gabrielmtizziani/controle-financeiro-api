@@ -8,8 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public record UpdateAccountRequest(
-        @NotNull
-        Long id,
         String nameAccount,
         AccountType accountType,
         @DecimalMin(value = "0.0")
