@@ -5,11 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CreateCategoryRequest(
-
         @NotBlank(message = "The name category is required")
-        String nameCategory,
-        @NotNull(message = "The type is required")
-        TypeCategory typeCategory
-
+        String nameCategory
 ) {
 }

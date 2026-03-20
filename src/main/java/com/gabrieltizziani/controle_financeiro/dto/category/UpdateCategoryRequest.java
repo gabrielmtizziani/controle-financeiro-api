@@ -4,7 +4,6 @@ import com.gabrieltizziani.controle_financeiro.domain.enums.TypeCategory;
 import jakarta.validation.constraints.NotNull;
 
 public record UpdateCategoryRequest(
-        String nameCategory,
-        TypeCategory typeCategory
+        String nameCategory
 ) {
 }

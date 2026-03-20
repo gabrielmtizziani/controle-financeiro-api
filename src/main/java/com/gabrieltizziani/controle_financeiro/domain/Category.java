@@ -25,10 +25,6 @@ public class Category {
     private String nameCategory;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_category")
-    private TypeCategory typeCategory;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "status_category")
     private StatusCategory statusCategory = StatusCategory.ATIVA;
 
@@ -38,16 +34,12 @@ public class Category {
 
     public Category(CreateCategoryRequest createCategoryRequest, User user){
         this.nameCategory = createCategoryRequest.nameCategory();
-        this.typeCategory = createCategoryRequest.typeCategory();
         this.user = user;
     }
 
     public void updateCategory(UpdateCategoryRequest updateCategoryRequest){
         if (updateCategoryRequest.nameCategory() != null){
             this.nameCategory = updateCategoryRequest.nameCategory();
-        }
-        if (updateCategoryRequest.typeCategory() != null){
-            this.typeCategory = updateCategoryRequest.typeCategory();
         }
     }
 
