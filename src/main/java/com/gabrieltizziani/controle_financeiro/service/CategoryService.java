@@ -2,6 +2,8 @@ package com.gabrieltizziani.controle_financeiro.service;
 
 import com.gabrieltizziani.controle_financeiro.domain.Category;
 import com.gabrieltizziani.controle_financeiro.domain.User;
+import com.gabrieltizziani.controle_financeiro.domain.enums.StatusAccount;
+import com.gabrieltizziani.controle_financeiro.domain.enums.StatusCategory;
 import com.gabrieltizziani.controle_financeiro.dto.account.AccountResponse;
 import com.gabrieltizziani.controle_financeiro.dto.category.CategoryResponse;
 import com.gabrieltizziani.controle_financeiro.dto.category.CreateCategoryRequest;
@@ -53,6 +55,32 @@ public class CategoryService {
                 .map(CategoryResponse::new)
                 .toList();
     }
+
+    @Transactional
+    public void inactivateCategory(Long id, Long userId) {
+        var category = categoryRepository.findByIdAndUserId(id, userId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        if (category.getStatusCategory()== StatusCategory.INATIVA){
+            throw new RuntimeException("Category inactivated");
+        }
+
+        category.inactivateCategory();
+        categoryRepository.save(category);
+    }
+
+    @Transactional
+    public void activateCategory(Long id, Long userId) {
+        var category = categoryRepository.findByIdAndUserId(id, userId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+        if (category.getStatusCategory()== StatusCategory.ATIVA){
+            throw new RuntimeException("Category activated");
+        }
+
+        category.activateCategory();
+        categoryRepository.save(category);
+    }
+
 
 
 
