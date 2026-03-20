@@ -28,12 +28,6 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/accounts").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/accounts").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/accounts").permitAll()
-                        .requestMatchers(HttpMethod.PATCH, "/accounts/{id}/inactivate").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/categories").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/categories").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
