@@ -2,7 +2,6 @@ package com.gabrieltizziani.controle_financeiro.domain;
 
 
 import com.gabrieltizziani.controle_financeiro.domain.enums.StatusCategory;
-import com.gabrieltizziani.controle_financeiro.domain.enums.TypeCategory;
 import com.gabrieltizziani.controle_financeiro.dto.category.CreateCategoryRequest;
 import com.gabrieltizziani.controle_financeiro.dto.category.UpdateCategoryRequest;
 import jakarta.persistence.*;
