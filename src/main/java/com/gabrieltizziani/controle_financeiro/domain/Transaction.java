@@ -1,7 +1,7 @@
 package com.gabrieltizziani.controle_financeiro.domain;
 
 import com.gabrieltizziani.controle_financeiro.domain.enums.TransactionType;
-import com.gabrieltizziani.controle_financeiro.dto.account.UpdateTransactionRequest;
+import com.gabrieltizziani.controle_financeiro.dto.transaction.UpdateTransactionRequest;
 import com.gabrieltizziani.controle_financeiro.dto.transaction.CreateTransactionRequest;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,7 +34,7 @@ public class Transaction {
     private Category category;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "transaction_type", nullable = false)
     private TransactionType transactionType;
 
     @Column(nullable = false, precision = 15, scale = 2)
@@ -65,7 +65,24 @@ public class Transaction {
         this.category = category;
     }
 
-    public void updateTransaction(UpdateTransactionRequest updateTransactionRequest){
-
+    public void updateTransaction(UpdateTransactionRequest request, Account account, Category category) {
+        if (request.transactionDate() != null) {
+            this.transactionDate = request.transactionDate();
+        }
+        if (request.transactionType() != null) {
+            this.transactionType = request.transactionType();
+        }
+        if (request.amount() != null) {
+            this.amount = request.amount();
+        }
+        if (request.description() != null) {
+            this.description = request.description().trim();
+        }
+        if (account != null) {
+            this.account = account;
+        }
+        if (category != null) {
+            this.category = category;
+        }
     }
 }
