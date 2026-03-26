@@ -24,6 +24,7 @@ public record CreateTransactionRequest(
         @DecimalMin(value = "0.01", message = "Amount must be greater than zero")
         BigDecimal amount,
         @Size(max = 255, message = "Description must be less than 255 characters")
+        @NotNull(message = "Description is required")
         String description
 ) {
 }
