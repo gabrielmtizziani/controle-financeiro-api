@@ -122,8 +122,8 @@ public class TransactionService {
         transactionRepository.delete(transaction);
     }
 
-    public List<TransactionResponse> findAllTransactions(Long userId) {
-        return transactionRepository.findAllByUserIdOrderByTransactionDateDesc(userId)
+    public List<TransactionResponse> findAllTransactionsByAccount(Long userId, Long accountId) {
+        return transactionRepository.findAllByUserIdAndAccountIdOrderByTransactionDateDesc(userId, accountId)
                 .stream()
                 .map(TransactionResponse::new)
                 .toList();

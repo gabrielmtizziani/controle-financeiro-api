@@ -21,10 +21,13 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @GetMapping
-    public ResponseEntity<List<TransactionResponse>> findAllTransactions(Authentication authentication) {
+    @GetMapping("/account/{accountId}")
+    public ResponseEntity<List<TransactionResponse>> findAllTransactionsByAccount(
+            @PathVariable Long accountId,
+            Authentication authentication
+    ) {
         User user = (User) authentication.getPrincipal();
-        return ResponseEntity.ok(transactionService.findAllTransactions(user.getId()));
+        return ResponseEntity.ok(transactionService.findAllTransactionsByAccount(user.getId(), accountId));
     }
 
     @GetMapping("/{id}")
